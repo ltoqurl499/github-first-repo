@@ -1,0 +1,10 @@
+FROM ubuntu:14.04
+MAINTAINER "Jun <ltoqurl49@gmail.com>"
+LABEL "purpose"="Webserver Docker Test"
+RUN apt-get update
+RUN apt-get -y install apache2
+ADD ./test.html /var/www/html/index.html
+WORKDIR /var/www/html
+RUN ["/bin/bash", "-c", "echo Hello >> index.html"]
+EXPOSE 80
+CMD apachectl -D FOREGROUND
